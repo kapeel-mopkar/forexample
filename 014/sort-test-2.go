@@ -12,6 +12,8 @@ type person struct {
 
 type byAge []person
 
+type byName []person
+
 func (a byAge) Len() int {
 	return len(a)
 }
@@ -22,6 +24,18 @@ func (a byAge) Swap(i, j int) {
 
 func (a byAge) Less(i, j int) bool {
 	return a[i].age < a[j].age
+}
+
+func (a byName) Len() int {
+	return len(a)
+}
+
+func (a byName) Swap(i, j int) {
+	a[i], a[j] = a[j], a[i]
+}
+
+func (a byName) Less(i, j int) bool {
+	return a[i].name < a[j].name
 }
 
 func (p person) String() string {
@@ -38,5 +52,8 @@ func main() {
 
 	fmt.Println(people)
 	sort.Sort(byAge(people))
+	fmt.Println(people)
+
+	sort.Sort(byName(people))
 	fmt.Println(people)
 }
