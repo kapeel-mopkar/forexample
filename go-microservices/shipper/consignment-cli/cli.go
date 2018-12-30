@@ -9,6 +9,8 @@ import (
 	pb "github.com/forexample/go-microservices/shipper/consignment-service/proto/consignment"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
+	//"github.com/micro/go-micro/cmd"
+    microclient "github.com/micro/go-micro/client"
 )
 
 const (
@@ -33,7 +35,9 @@ func main() {
 		log.Fatalf("Did not connect: %v", err)
 	}
 	defer conn.Close()
-	client := pb.NewShippingServiceClient(conn)
+
+	//client := pb.NewShippingServiceClient(conn)
+	client := pb.NewShippingServiceClient("go.micro.srv.consignment", microclient.DefaultClient)
 
 	// Contact the server and print out its response.
 	file := defaultFilename

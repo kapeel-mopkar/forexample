@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 
-	pb "github.com/EwanValentine/shippy/vessel-service/proto/vessel"
+	pb "github.com/forexample/go-microservices/shipper/vessel-service/proto/vessel"
 	"github.com/micro/go-micro"
 )
 
@@ -62,7 +62,7 @@ func main() {
 	srv.Init()
 
 	// Register our implementation with 
-	pb.RegisterVesselServiceHandler(srv.Server(), &service{repo})
+	pb.RegisterVesselServiceServer(srv.Server(), &service{repo})
 
 	if err := srv.Run(); err != nil {
 		fmt.Println(err)
