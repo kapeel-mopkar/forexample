@@ -9,7 +9,7 @@ import (
 	pb "github.com/forexample/go-microservices/shipper/consignment-service/proto/consignment"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	//"github.com/micro/go-micro/cmd"
+	"github.com/micro/go-micro/cmd"
     microclient "github.com/micro/go-micro/client"
 )
 
@@ -36,6 +36,7 @@ func main() {
 	}
 	defer conn.Close()
 
+	cmd.Init()
 	//client := pb.NewShippingServiceClient(conn)
 	client := pb.NewShippingServiceClient("go.micro.srv.consignment", microclient.DefaultClient)
 
